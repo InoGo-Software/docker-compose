@@ -22,4 +22,4 @@ RUN curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-c
 
 RUN chmod +x /usr/local/bin/docker-compose
 
-RUN apt-get install make git -y
+RUN apt-get install make git sshpass -y
