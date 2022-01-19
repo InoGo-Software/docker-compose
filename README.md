@@ -8,7 +8,7 @@ Container includes make and git
 ```
 pipeline {
     agent {
-        docker { image 'inogo/docker-compose:1.24.0' }
+        docker { image 'inogo/docker-compose:1.29.2' }
     }
     stages {
         stage('Build') {
