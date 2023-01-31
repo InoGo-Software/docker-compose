@@ -20,14 +20,16 @@ RUN echo \
 
 RUN apt-get update
 
-# Install docker
-RUN VERSION_STRING=5:20.10.13~3-0~ubuntu-focal && apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin -y
+# Install docker/docker-compose
+RUN VERSION_STRING=5:20.10.13~3-0~ubuntu-focal && apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin=2.15.1-1~ubuntu.20.04~focal -y
 
 RUN apt-get install make git sshpass -y
 
 # Install npm
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install nodejs
+
+RUN npm isntall -g yarn
 
 # Alias the docker-compose command to docker compose.
 RUN echo 'docker compose "$@"' | tee /bin/docker-compose
