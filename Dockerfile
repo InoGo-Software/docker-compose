@@ -9,6 +9,12 @@ RUN apt-get install \
     ca-certificates \
     curl \
     gnupg \
+    jq \
+    python3-pip \
+    openssh-client \
+    git \
+    sshpass \
+    make \
     lsb-release -y
 
 RUN mkdir -p /etc/apt/keyrings
@@ -25,14 +31,14 @@ RUN apt-cache madison docker-ce | awk '{ print $3 }'
 # Install docker/docker-compose
 RUN VERSION_STRING=5:25.0.5-1~ubuntu.22.04~jammy && apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin=2.25.0-1~ubuntu.22.04~jammy -y
 
-RUN apt-get install make git sshpass -y
-
 # Install npm
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install nodejs
-
-RUN npm isntall -g yarn
+RUN npm install -g yarn
 
 # Alias the docker-compose command to docker compose.
 RUN echo 'docker compose "$@"' | tee /bin/docker-compose
 RUN chmod +x /bin/docker-compose
+
+# AWS CLI
+RUN pip3 install awscli
