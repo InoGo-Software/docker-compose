@@ -15,6 +15,7 @@ RUN apt-get install \
     git \
     sshpass \
     make \
+    default-jre \
     lsb-release -y
 
 RUN mkdir -p /etc/apt/keyrings
