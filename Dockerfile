@@ -32,6 +32,9 @@ RUN apt-cache madison docker-ce | awk '{ print $3 }'
 # Install docker/docker-compose
 RUN VERSION_STRING=5:25.0.5-1~ubuntu.22.04~jammy && apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin=2.25.0-1~ubuntu.22.04~jammy -y
 
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 # Install npm
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install nodejs
