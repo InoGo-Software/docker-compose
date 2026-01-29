@@ -40,6 +40,12 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install nodejs
 RUN npm install -g yarn
 
+# Download and install Go
+RUN curl -OL https://golang.org/dl/go1.25.0.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.25.0.linux-amd64.tar.gz && \
+    rm go1.25.0.linux-amd64.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin
+
 # Alias the docker-compose command to docker compose.
 RUN echo 'docker compose "$@"' | tee /bin/docker-compose
 RUN chmod +x /bin/docker-compose
